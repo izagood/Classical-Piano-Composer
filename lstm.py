@@ -3,7 +3,6 @@
 import glob
 import pickle
 import numpy
-import tensorflow as tf
 
 import music21.converter as converter
 import music21.instrument as instrument
