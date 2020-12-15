@@ -3,15 +3,21 @@
 import glob
 import pickle
 import numpy
-from music21 import converter, instrument, note, chord
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import Dropout
-from keras.layers import LSTM
-from keras.layers import Activation
-from keras.layers import BatchNormalization as BatchNorm
-from keras.utils import np_utils
-from keras.callbacks import ModelCheckpoint
+import tensorflow as tf
+
+import music21.converter as converter
+import music21.instrument as instrument
+import music21.note as note
+import music21.chord as chord
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Dropout
+from tensorflow.keras.layers import LSTM
+from tensorflow.keras.layers import Activation
+from tensorflow.keras.layers import BatchNormalization as BatchNorm
+from tensorflow.keras.utils import np_utils
+from tensorflow.keras.callbacks import ModelCheckpoint
 
 def train_network():
     """ Train a Neural Network to generate music """
@@ -37,10 +43,12 @@ def get_notes():
 
         notes_to_parse = None
 
-        try: # file has instrument parts
+        try:
+            # file has instrument parts
             s2 = instrument.partitionByInstrument(midi)
             notes_to_parse = s2.parts[0].recurse() 
-        except: # file has notes in a flat structure
+        except Exception:
+            # file has notes in a flat structure
             notes_to_parse = midi.flat.notes
 
         for element in notes_to_parse:

@@ -2,13 +2,18 @@
     trained neural network """
 import pickle
 import numpy
-from music21 import instrument, note, stream, chord
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import Dropout
-from keras.layers import LSTM
-from keras.layers import BatchNormalization as BatchNorm
-from keras.layers import Activation
+
+import music21.instrument as instrument
+import music21.note as note
+import music21.stream as stream
+import music21.chord as chord
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Dropout
+from tensorflow.keras.layers import LSTM
+from tensorflow.keras.layers import BatchNormalization as BatchNorm
+from tensorflow.keras.layers import Activation
 
 def generate():
     """ Generate a piano midi file """
